@@ -9,17 +9,21 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width">
+<link href="${contextPath}/resources/css/style.css" rel="stylesheet"
+	type="text/css" media="screen">
+	
+	
 <title><tiles:insertAttribute name="title" /></title>
 
 </head>
 <body>
 	<div id="outer_wrap">
 		<div id="wrap">
-			<%-- <header>
+			 <header>
 				<tiles:insertAttribute name="header" />
 			</header>
 			<div class="clear"></div>
-			<aside>
+			<%--<aside>
 				<tiles:insertAttribute name="side" />
 			</aside>--%>
 			<article>
