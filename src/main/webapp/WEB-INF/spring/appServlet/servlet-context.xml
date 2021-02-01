@@ -33,8 +33,7 @@
 		<interceptor>
 			<mapping path="/*/*.do" />
 			<mapping path="/*/*/*.do" />
-			<beans:bean
-				class="com.shoppingMall.common.ViewNameInterceptor" />
+			<beans:bean class="com.shoppingMall.common.ViewNameInterceptor" />
 		</interceptor>
 	</interceptors>
 

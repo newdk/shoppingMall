@@ -17,8 +17,9 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller("mainController")
 @EnableAspectJAutoProxy //loggingAdvice
 public class MainController {
-
-	@RequestMapping(value= {"/main/main.do"} ,method={RequestMethod.POST,RequestMethod.GET})
+	
+	//@RequestMapping(value= {"/main/main.do"} ,method={RequestMethod.POST,RequestMethod.GET})
+	@RequestMapping(value= {"/", ""} ,method={RequestMethod.POST,RequestMethod.GET})
 	public ModelAndView main(HttpServletRequest request, HttpServletResponse response) throws Exception{
 		HttpSession session;
 		ModelAndView mav=new ModelAndView();
