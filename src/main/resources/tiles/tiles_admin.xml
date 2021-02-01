@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE tiles-definitions PUBLIC
+       "-//Apache Software Foundation//DTD Tiles Configuration 2.0//EN"
+       "http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
+<tiles-definitions>
+	<definition name="baseLayout3" template="/WEB-INF/views/common/layout.jsp">
+		<put-attribute name="title" value="레이아웃 페이지" />
+		<put-attribute name="body" value="" />
+	</definition>
+
+	<definition name="/admin/admin" extends="baseLayout3">
+		<put-attribute name="title" value="관리자 메인" />
+		<put-attribute name="body" value="/WEB-INF/views/admin/adminMain.jsp" />
+	</definition>
+</tiles-definitions>
+
+
