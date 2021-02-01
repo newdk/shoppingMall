@@ -15,11 +15,11 @@
 <body>
 	<div id="outer_wrap">
 		<div id="wrap">
-			<%-- <header>
+			 <header>
 				<tiles:insertAttribute name="header" />
 			</header>
 			<div class="clear"></div>
-			<aside>
+			<%--<aside>
 				<tiles:insertAttribute name="side" />
 			</aside>--%>
 			<article>
