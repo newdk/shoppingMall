@@ -1,17 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
-	pageEncoding="utf-8"	isELIgnored="false"
-	%>
-<%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles" %>  
+	pageEncoding="utf-8" isELIgnored="false"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<c:set var="contextPath"  value="${pageContext.request.contextPath}" />
+<c:set var="contextPath" value="${pageContext.request.contextPath}" />
+<%
+  request.setCharacterEncoding("utf-8");
+%>
 <!DOCTYPE html>
 <html>
 <head>
   <meta charset="UTF-8">
-  <title>상단부_header</title>
-<!--  테스트  -->
-  <!--<link rel="stylesheet" href="css/main.css">-->
+  <title><tiles:insertAttribute name="header" /></title>
 </head>
 <body>
 <div class="body__container">
