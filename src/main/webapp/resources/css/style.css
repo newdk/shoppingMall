@@ -1,0 +1,229 @@
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+  display: block;
+}
+body {
+  line-height: 1;
+}
+ol,
+ul {
+  list-style: none;
+}
+blockquote,
+q {
+  quotes: none;
+}
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+  content: '';
+  content: none;
+}
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+/* login */
+.login-join-section {
+  width: 1140px;
+  margin: 0 auto;
+}
+.login-container {
+  clear: both;
+}
+.login-inner,
+.join-inner {
+  width: 512px;
+  padding: 10px;
+  background: #f2f2f2;
+  float: left;
+}
+.join-inner {
+  height: 180px;
+  float: right;
+}
+.shop_ment {
+  height: 108px;
+}
+.input-pw {
+  margin-top: 10px;
+}
+.input-label-id,
+.input-label-pw {
+  font-size: 14px;
+  color: #555;
+}
+.login-inner #member_id,
+.login-inner #pw {
+  width: 50%;
+  height: 26px;
+  line-height: 2.6;
+  padding: 0 10px;
+  margin-top: 10px;
+  border: 1px solid #e5e5e5;
+  outline: none;
+}
+.login-button-flex {
+  display: flex;
+  flex-direction: row-reverse;
+  margin: 25px 3px 0 0;
+}
+.login-join {
+  width: 165px;
+  padding: 9px 0px;
+  background: #002157;
+  border: #002157;
+  border-radius: 2px;
+  font-size: 16px;
+  font-weight: 600;
+  color: #fff;
+  cursor: pointer;
+}
+.join-button {
+  display: block;
+  padding: 13px 0;
+  text-align: center;
+  text-decoration: none;
+}
+
+/* signUp */
+.signUp-inner {
+  width: 550px;
+  margin: 0 auto;
+}
+.signUp-inner h2 {
+  text-align: center;
+  display: block;
+  padding: 18px;
+  background: #002a71;
+  color: #fff;
+}
+.signUp-inner table {
+  width: 550px;
+}
+.signUp-inner table tr {
+  border: 1px solid;
+}
+.signUp-inner input {
+  width: 50%;
+  padding: 10px;
+  border: 0;
+  font-size: 15px;
+  outline: none;
+}
+.signUp-button-wrap {
+  width: 20%;
+  margin: 10px auto 0;
+}
+.signUp-button {
+  padding: 10px 28px;
+  border: 0;
+  background: #002a71;
+  color: #fff;
+  cursor: pointer;
+}
