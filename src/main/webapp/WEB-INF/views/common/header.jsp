@@ -25,29 +25,29 @@
                 <li><a href="">PHOTO REVIEW</a></li>
                 <li><a href="">Q&amp;A</a></li>
             </ul>
-            <c:if test="${empty sessionScope.member && sessionScope.member == null }">
+            <c:if test="${empty sessionScope.member && sessionScope.member == null && empty sessionScope.admin && sessionScope.admin == null }">
 	            <ul class="topgnb__right">
-	                <li><a href="${path }/member/loginForm.do">LOGIN</a></li>
-	                <li><a href="">JOIN</a></li>
+	                <li><a href="${contextPath }/member/loginForm.do">LOGIN</a></li>
+	                <li><a href="${contextPath }/member/signUpForm.do">JOIN</a></li>
 	                <li><a href="">CART</a></li>
-	                <li><a href="${path }/member/myPageForm.do">MY PAGE</a></li>
+	                <li><a href="${contextPath }/member/loginForm.do">MY PAGE</a></li>
 	                <li><a href="">ORDER</a></li>
 	            </ul>
             </c:if>
             <c:if test="${not empty sessionScope.member && sessionScope.member != null }">
-				<ul class="topgnb__right">
-	                <li><a href="${path }/member/logout.do">LOGOUT</a></li>
-	                <li><a href="${path }/member/updateMyInfoForm.do?member_id=${member_id}">MODIFY</a></li>
+            	<ul class="topgnb__right">
+                    <li><a href="${contextPath }/member/logout.do">LOGOUT</a></li>
+                    <li><a href="${contextPath }/member/updateMyInfoForm.do?member_id=${member_id}">MODIFY</a></li>
 	                <li><a href="">CART</a></li>
-	                <li><a href="${path }/member/myPageForm.do">MY PAGE</a></li>
+	                <li><a href="${contextPath }/member/myPageForm.do">MY PAGE</a></li>
 	                <li><a href="">ORDER</a></li>
-	            </ul>>
-			</c:if>
+	            </ul>
+            </c:if>
         </div>
       
         <div class="top inbox">
             <header id="top" class="header">
-                <h1 class="top__logo"><a href="${path }/">WHOSBAG</a></h1>
+                <h1 class="top__logo"><a href="${contextPath }/">WHOSBAG</a></h1>
             </header>
             <div class="top__form">
                 <form action="" method="post" name="search">

@@ -10,7 +10,7 @@
 <title>main</title>
 </head>
 <body>
-	<%-- <c:if test="${empty sessionScope.member && sessionScope.member == null }">
+<%-- 	<c:if test="${empty sessionScope.member && sessionScope.member == null }">
 		<h1>main 입니다~!!!!</h1>
 		<a href="${path }/member/loginForm.do">로그인</a>
 		<a href="${path }/member/signUpForm.do">회원가입</a>

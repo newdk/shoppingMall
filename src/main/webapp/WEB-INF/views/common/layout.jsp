@@ -12,7 +12,14 @@
 <link href="${contextPath}/resources/css/style.css" rel="stylesheet"
 	type="text/css" media="screen">
 <title><tiles:insertAttribute name="title" /></title>
-
+<link href="${contextPath}/resources/css/style.css" rel="stylesheet" type="text/css" media="screen">
+<style type="text/css">
+	/* height 임시로 지정 */
+	.layout-body{
+		width:100%;
+		height:800px;
+	}
+</style>
 </head>
 <body>
 	<div id="outer_wrap">
@@ -27,8 +34,8 @@
 			<div class="clear"></div>
 			<%--<footer>
 				<tiles:insertAttribute name="footer" />
-			</footer> --%>
-		</div>
+			</footer> 
+		</div>--%>
 	</div>
 </body>
 
