@@ -1,5 +1,10 @@
 package com.shoppingMall.member.dao;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+
+import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
@@ -28,6 +33,12 @@ public class MemberDAOImpl implements MemberDAO{
 		return sqlSession.selectOne("login", membervo);
 	}
 	
+	// 아이디 찾기
+	public List<MemberVO> findId(MemberVO membervo) throws DataAccessException {
+		return sqlSession.selectList("findId" , membervo);
+	}
+
+
 	// 회원 정보 수정에서 정보 보여주기
 	public MemberVO showInfo(String member_id) throws DataAccessException{
 		return sqlSession.selectOne("showInfo",member_id);
@@ -52,4 +63,6 @@ public class MemberDAOImpl implements MemberDAO{
 	public MemberVO adminLogin(MemberVO membervo) throws DataAccessException{
 		return sqlSession.selectOne("adminLogin", membervo);
 	}
+
+
 }

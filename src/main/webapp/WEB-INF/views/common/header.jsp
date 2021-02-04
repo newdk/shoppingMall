@@ -2,18 +2,19 @@
 	pageEncoding="utf-8" isELIgnored="false"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles"%>
-<c:set var="contextPath" value="${pageContext.request.contextPath}" />
+<c:set var="path" value="${pageContext.request.contextPath }" />
+<c:set var="member_id" value="${sessionScope.member }" />
 <%
   request.setCharacterEncoding("utf-8");
 %>
 <!DOCTYPE html>
 <html>
 <head>
-  <meta charset="UTF-8">
- <%--  <title><tiles:insertAttribute name="header" /></title> --%>
+<meta charset="UTF-8">
+<%-- <title><tiles:insertAttribute name="header" /></title> --%>
 </head>
 <body>
-<div class="body__container">
+<!-- <div class="body__container"> -->
     <div class="header_container">   
         <div class="topgnb inbox">
             <ul class="topgnb__left">
@@ -35,13 +36,15 @@
             </c:if>
             <c:if test="${not empty sessionScope.member && sessionScope.member != null }">
             	<ul class="topgnb__right">
-	                <li><a href="${contextPath }/member/logout.do">LOGOUT</a></li>
+                    <li><a href="${contextPath }/member/logout.do">LOGOUT</a></li>
+                    <li><a href="${contextPath }/member/updateMyInfoForm.do?member_id=${member_id}">MODIFY</a></li>
 	                <li><a href="">CART</a></li>
 	                <li><a href="${contextPath }/member/myPageForm.do">MY PAGE</a></li>
 	                <li><a href="">ORDER</a></li>
 	            </ul>
             </c:if>
         </div>
+      
         <div class="top inbox">
             <header id="top" class="header">
                 <h1 class="top__logo"><a href="${contextPath }/">WHOSBAG</a></h1>
@@ -76,6 +79,6 @@
             </nav>
         </div> <!-- //gnb -->
     </div>
-</div>
+<!-- </div> -->
 </body>
 </html>

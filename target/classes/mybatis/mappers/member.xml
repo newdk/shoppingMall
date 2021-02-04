@@ -30,7 +30,15 @@
     <select id="login" resultMap="memberResult" resultType="memberVO"  parameterType="memberVO">
   		select member_id, pw from s_member where member_id = #{member_id}
     </select>
-  
+    
+    <!-- 아이디 찾기 -->
+   	<select id="findId" parameterType="memberVO" resultType="memberVO">
+		<![CDATA[
+			select member_id from s_member 
+			where member_name = #{member_name} and email = #{email}
+		]]>
+	</select>
+	
     <!-- 회원 정보 수정 정보 보이기 -->
 	<select id="showInfo"  resultMap="memberResult" resultType="memberVO"  parameterType="String">
 		select member_id, pw, member_name, email, phone, member_credate
