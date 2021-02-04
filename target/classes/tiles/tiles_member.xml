@@ -6,7 +6,6 @@
  	<definition name="baseLayout2" template="/WEB-INF/views/common/layout.jsp">
 		<put-attribute name="title" value="레이아웃 페이지" />
 		<put-attribute name="body" value="" />
-		<put-attribute name="footer" value="/WEB-INF/views/common/footer.jsp" />
 	</definition>
 
 	<definition name="/member/loginForm" extends="baseLayout">
