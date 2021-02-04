@@ -128,18 +128,8 @@ public class MemberControllerImpl implements MemberController {
 					mav.addObject("message", "일치하는 아이디가 없습니다.");
 			}
 			
-				// 관리자 로그인 - 오류로 닫아놨어요
-//			login = memberService.adminLogin(membervo);
-//			if(login.getAuthority().equals("1")) {
-//				session.setAttribute("admin", login);
-//				mav.setViewName("redirect:/admin/admin");
-//			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
 		return mav;
-	}
-
+		}
 	
 	
 	// 아이디 찾기 - 수정필요
