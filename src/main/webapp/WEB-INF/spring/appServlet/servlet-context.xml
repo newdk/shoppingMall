@@ -30,18 +30,10 @@
 	<context:component-scan base-package="com.shoppingMall" />
 
 	<interceptors>
-		<!-- 뷰인터셉터 -->
 		<interceptor>
 			<mapping path="/*/*.do" />
 			<mapping path="/*/*/*.do" />
 			<beans:bean class="com.shoppingMall.common.ViewNameInterceptor" />
-		</interceptor>
-		
-		<!-- 관리자입터셉터 -->
-		<interceptor>
-			<mapping path="/admin/**" />
-			<mapping path="/common/**" />
-			<beans:bean class="com.shoppingMall.common.AdminInterceptor" />
 		</interceptor>
 	</interceptors>
 
