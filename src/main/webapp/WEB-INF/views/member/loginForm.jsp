@@ -8,15 +8,6 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" type="text/css" href="${path }/resources/css/style.css" />
-<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<!-- <script type="text/javascript">
-	$(function(){
-	    var responseMessage = "<c:out value="${message}" />";
-	    if(responseMessage != ""){
-	        alert(responseMessage);
-	    }
-	}) 
-</script> -->
 </head>
 <body>
 	<section>
@@ -36,12 +27,26 @@
 	              <button type="submit" class="login-button login-join">로그인</button>
 	            </div>
 	          </form>
+	          <div class="social-login">
+	            <a href=""><img src="${path }/resources/image/h34_sns_facebook.gif" alt="페이스북 로그인"></a>
+	            <a href=""><img src="${path }/resources/image/h34_sns_naver.gif" alt="네이버 로그인"/></a>
+	            <a href=""><img src="${path }/resources/image/h34_sns_kakaotalk.gif" alt="카카오 로그인"/></a>
+	          </div>
+	          <div class="login-find">
+	            <div class="login-find-wrap">
+	              <span class="login-find-text">아이디/비밀번호를 잊으셨나요?</span>
+	              <span class="find-link-wrap">
+	                <a href="" class="find-id">아이디 찾기</a>
+	                <a href="" class="find-pw">비밀번호 찾기</a>
+	              </span>
+	            </div>
+	          </div>
 	        </div>
 	        <div class="join-inner">
 	          <div class="shop_ment">
 	            후즈백은 '성함, 아이디, 이메일' 만으로 "간편회원가입" 됩니다. <br><br>신규회원 첫구매 무료배송쿠폰, 적립금3,000원 즉시할인, 앱으로 구매시 1,000원추가할인까지<br>좋은상품 합리적인 가격으로 이용하세요.
 	          </div>
-	          <a href="${path }/member/signUpForm.do" class="join-button login-join">회원가입</a>
+	          <a href="${path }/member/signUpForm.do" class="join-button login-join" style="color:#fff;">회원가입</a>
 	        </div>
 	      </div>
 	    </div>

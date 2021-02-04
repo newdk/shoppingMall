@@ -65,6 +65,7 @@ function pwRegCheck(){
   if(!pwc.test(pw.value)){
     pwReg.innerHTML = "영문자,숫자,특수문자 조합으로 4~12자리를 입력해주세요";
     pwReg.style.color = "red";
+    pwReg.style.marginBottom = "10px";
   }else if(pwc.test(pw.value)){
     pwReg.innerHTML = "";
   }
@@ -77,6 +78,7 @@ function pwRCh(){
   if(pw.value != pwCheck.value){
     pwResult.innerHTML = "비밀번호가 일치하지 않습니다";
     pwResult.style.color = "red";
+    pwResult.style.marginBottom = "10px";
 	}else if(pwCheck.value == pw.value){
     pwResult.innerHTML = "";
   }
@@ -91,6 +93,7 @@ function checkEmail(){
     if(!emailReg.test(email.value)){
       emailResult.innerHTML = "올바른 이메일 형식이 아닙니다";
       emailResult.style.color = "red";
+      emailResult.style.marginBottom = "10px";
     }else{
       emailResult.innerHTML = "";
     }
@@ -127,38 +130,38 @@ function phoneCheck(){
 	            </thead>
 	            <tbody>
 	              <tr>
-	                <td><label for="member_name">이름</label></td>
+	                <td class="sign-td"><label for="member_name">이름</label></td>
 	                <td colspan="6">
 	                	<input type="text" name="member_name" id="member_name" oninput="nameCheck()" placeholder="이름을 입력하세요" />
 	                	<span id="nameResult"></span>
 	                </td>
 	              </tr>
 	              <tr>
-	                <td><label for="member_id">아이디</label></td>
+	                <td class="sign-td"><label for="member_id">아이디</label></td>
 	                <td colspan="6">
 	                	<input type="text" name="member_id" id="member_id" oninput="idCheck()" maxlength="12" placeholder="아이디를 입력하세요" />
 	                	<span id="idResult"></span>
 	                </td>
 	              </tr>
 	              <tr>
-	                <td><label for="pw">비밀번호</label></td>
+	                <td class="sign-td"><label for="pw">비밀번호</label></td>
 	                <td colspan="6">
 	                	<input type="password" name="pw" id="pw" onkeyup="pwRegCheck()" maxlength="12" placeholder="영문,숫자,특수문자포함 4~12글자" />
-	                	<span id="pwReg"></span>
+	                	<div id="pwReg"></div>
 	                </td>
 	              </tr>
 	              <tr>
-	                <td><label for="pwCheck">비밀번호 확인</label></td>
+	                <td class="sign-td"><label for="pwCheck">비밀번호 확인</label></td>
 	                <td colspan="6">
 	                	<input type="password" name="pwCheck" id="pwCheck" onkeyup="pwRCh()" maxlength="12" placeholder="비밀번호 확인" />
-	                	<span id="pwResult"></span>
+	                	<div id="pwResult"></div>
 	                </td>
 	              </tr>
 	              <tr>
-	                <td><label for="email">이메일</label></td>
+	                <td class="sign-td"><label for="email">이메일</label></td>
 	                <td colspan="6">
 	                	<input type="text" name="email" id="email" oninput="checkEmail()" placeholder="이메일을 입력하세요" />
-	                	<span id="emailResult"></span>
+	                	<div id="emailResult"></div>
 	                </td>
 	              </tr>
 	              <tr>

@@ -85,11 +85,31 @@ public class MemberControllerImpl implements MemberController {
 			}
 			// 관리자 로그인
 			login = memberService.adminLogin(membervo);
-			if(login.getAuthority().equals("1")) {
-				session.setAttribute("admin", login);
-				mav.setViewName("redirect:/admin/admin");
+			if(login == null) {
+				mav.setViewName("redirect:/");
+			}else {
+				// 관리자를 나타내는 1이 있을 경우
+				if(login.getAuthority().equals("1") && login.getAuthority() != null) {
+					session.setAttribute("admin", login);
+					mav.setViewName("redirect:/admin/main/main.do");
+					
+				// 비밀번호가 다를 경우	
+				}else if(login.getAuthority().equals("1") && login.getMember_id() != membervo.getMember_id()) {
+					session.setAttribute("admin", null);
+					out.println("<script>");
+					out.println("alert('비밀번호를 확인해주세요');");
+					out.println("history.back()");
+					out.println("</script>");
+					out.close();
+				}else {
+					out.println("<script>");
+					out.println("alert('아이디 또는 비밀번호를 확인해주세요');");
+					out.println("history.back()");
+					out.println("</script>");
+					out.close();
+				}
 			}
-		} catch (Exception e) {
+		}catch (Exception e) {
 			e.printStackTrace();
 		}
 		return mav;
