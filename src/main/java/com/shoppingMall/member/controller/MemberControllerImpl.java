@@ -2,6 +2,9 @@ package com.shoppingMall.member.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -11,6 +14,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,9 +22,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.shoppingMall.member.service.MemberService;
 import com.shoppingMall.member.vo.MemberVO;
+
 
 @Controller("memberController")
 @RequestMapping("/member")
@@ -43,58 +49,79 @@ public class MemberControllerImpl implements MemberController {
 	@RequestMapping(value = "/login.do", method = RequestMethod.POST)
 	public ModelAndView login(@ModelAttribute("membervo") MemberVO membervo, HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
-		ModelAndView mav = new ModelAndView();
+		ModelAndView mav = new ModelAndView("redirect:/member/loginForm.do");
 		response.setContentType("text/html;charset=utf-8");
 		HttpSession session = request.getSession();
 		PrintWriter out = response.getWriter();
 		try {
 			// db에 저장되어있는 회원 정보와 파라미터 id 값을 비교 후 값을 가져옴
 			MemberVO login = memberService.login(membervo);
-			
-			// 파라미터 비밀번호 값과 db에 암호화 되어있는 비밀번호를 비교
-			boolean pwMatch = pwEncoder.matches(membervo.getPw(), login.getPw());
-			
-			// 아이디, 비밀번호 일치
-			if (login != null && pwMatch && membervo.getMember_id().equals(login.getMember_id())) {
-				// 로그인 여부 확인을 위해 세션에 회원아이디를 붙여준다
-				String loginID = login.getMember_id();
-				session.setAttribute("member", loginID);
-				mav.setViewName("redirect:/");
-			
-			// 아이디만 맞았을 경우 
-			} else if(!pwMatch && membervo.getMember_id().equals(login.getMember_id())) {
-				// 세션에 null을 붙여준다
-				session.setAttribute("member", null);
-				out.println("<script>");
-				out.println("alert('비밀번호가 다릅니다');");
-				out.println("history.back()");
-				out.println("</script>");
-				out.close();
-				//mav.setViewName("redirect:/member/loginForm.do");
-				//mav.addObject("message", "비밀번호가 다릅니다");
+
+			if ((login)!=null) {
+				// 파라미터 비밀번호 값과 db에 암호화 되어있는 비밀번호를 비교
+				boolean pwMatch = pwEncoder.matches(membervo.getPw(), login.getPw());
+				// 아이디, 비밀번호 일치
+				if (login != null && pwMatch && membervo.getMember_id().equals(login.getMember_id())) {
+					// 로그인 여부 확인을 위해 세션에 회원아이디를 붙여준다
+					String loginID = login.getMember_id();
+					session.setAttribute("member", loginID);
+					mav.setViewName("redirect:/");
 				
-			// 수정해야 함
+				// 아이디만 맞았을 경우 
+				} else if(!pwMatch && membervo.getMember_id().equals(login.getMember_id())) {
+					// 세션에 null을 붙여준다
+					session.setAttribute("member", null);
+					out.println("<script>");
+					out.println("alert('비밀번호가 다릅니다');");
+					out.println("history.back()");
+					out.println("</script>");
+					out.close();
+					mav.setViewName("redirect:/member/loginForm.do");
+					mav.addObject("message", "비밀번호가 다릅니다");
+					
+				// 수정해야 함
+				}
 			} else{
-				// 세션에 null을 붙여준다
-				session.setAttribute("member", null);
-				out.println("<script>");
-				out.println("alert('아이디 또는 비밀번호를 확인해주세요');");
-				out.println("history.back()");
-				out.println("</script>");
-				out.close();
+					// 세션에 null을 붙여준다
+					//session.setAttribute("member", null);
+					out.println("<script>");
+					out.println("alert('아이디를 확인해주세요');");
+					out.println("history.back()");
+					out.println("</script>");
+					out.close();
+					mav.setViewName("redirect:/member/loginForm.do");
+					mav.addObject("message", "일치하는 아이디가 없습니다.");
 			}
-			// 관리자 로그인
-			login = memberService.adminLogin(membervo);
-			if(login.getAuthority().equals("1")) {
-				session.setAttribute("admin", login);
-				mav.setViewName("redirect:/admin/admin");
-			}
+			
+				// 관리자 로그인
+//			login = memberService.adminLogin(membervo);
+//			if(login.getAuthority().equals("1")) {
+//				session.setAttribute("admin", login);
+//				mav.setViewName("redirect:/admin/admin");
+//			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return mav;
 	}
 
+	
+	
+	// 아이디 찾기
+	@RequestMapping(value = "/findId" , method = RequestMethod.POST)
+	public ModelAndView findId(@ModelAttribute MemberVO membervo, HttpSession session,
+		HttpServletResponse response) throws Exception{ 
+		ModelAndView mav = new ModelAndView(); 
+		List<MemberVO> userList = memberService.findId(membervo); 
+		System.out.println(userList);
+		String findId= membervo.getMember_id();
+		System.out.println(findId);
+		mav.setViewName("findIdForm"); 
+		mav.addObject("findId", userList); 
+		return mav;
+	}
+
+		
 	// 로그아웃 처리
 	@RequestMapping(value = "/logout.do")
 	public ModelAndView logout(HttpSession session) {
@@ -213,4 +240,5 @@ public class MemberControllerImpl implements MemberController {
 		// 메인으로 돌아감
 		return "/main/main";
 	}
+
 }
