@@ -1,6 +1,9 @@
 package com.shoppingMall.member.service;
 
 import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletResponse;
 
@@ -30,7 +33,13 @@ public class MemberServiceImpl implements MemberService{
 	public MemberVO login(MemberVO membervo) throws Exception {
 		return memberDAO.login(membervo);
 	}
-	
+
+	// 아이디 찾기
+	public List<MemberVO> findId(MemberVO membervo) throws Exception { 
+		return memberDAO.findId(membervo);
+	}
+
+		
 	// 회원 정보 수정에서 정보 보여주기
 	public MemberVO showInfo(String member_id) throws Exception {
 		return memberDAO.showInfo(member_id);
@@ -67,4 +76,6 @@ public class MemberServiceImpl implements MemberService{
 	public MemberVO adminLogin(MemberVO membervo) throws Exception{
 		return memberDAO.adminLogin(membervo);
 	}
+
+	
 }
