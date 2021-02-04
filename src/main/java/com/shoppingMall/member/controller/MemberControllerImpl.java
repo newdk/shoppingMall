@@ -93,7 +93,7 @@ public class MemberControllerImpl implements MemberController {
 					mav.addObject("message", "일치하는 아이디가 없습니다.");
 			}
 			
-				// 관리자 로그인
+				// 관리자 로그인 - 오류로 닫아놨어요
 //			login = memberService.adminLogin(membervo);
 //			if(login.getAuthority().equals("1")) {
 //				session.setAttribute("admin", login);
@@ -107,7 +107,7 @@ public class MemberControllerImpl implements MemberController {
 
 	
 	
-	// 아이디 찾기
+	// 아이디 찾기 - 수정필요
 	@RequestMapping(value = "/findId" , method = RequestMethod.POST)
 	public ModelAndView findId(@ModelAttribute MemberVO membervo, HttpSession session,
 		HttpServletResponse response) throws Exception{ 
