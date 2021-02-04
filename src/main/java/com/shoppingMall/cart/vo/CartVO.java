@@ -7,13 +7,13 @@ import org.springframework.stereotype.Component;
 @Component("cartVO")
 public class CartVO {
 	
-	private String member_id;	 // 회원아이디
-	private int product_no;		 // 상품번호
-	private int count;			 // 수량
-	private Date cart_date;		 // 장바구니날짜
-	private int origin_price;	 // 원가
-	private int sale_price;		 // 할인가
-	private int cart_no;		 // 장바구니번호
+	private String member_id;	// 회원아이디
+	private int product_no;		// 상품번호
+	private int count;			// 수량
+	private Date cart_date;		// 장바구니날짜
+	private int origin_price;	// 원가
+	private int sale_price;		// 할인가
+	private int cart_no;		// 장바구니번호
 	
 	
 	public CartVO() {}
