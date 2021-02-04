@@ -27,7 +27,6 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.shoppingMall.member.service.MemberService;
 import com.shoppingMall.member.vo.MemberVO;
 
-
 @Controller("memberController")
 @RequestMapping("/member")
 public class MemberControllerImpl implements MemberController {
@@ -57,7 +56,7 @@ public class MemberControllerImpl implements MemberController {
 			// db에 저장되어있는 회원 정보와 파라미터 id 값을 비교 후 값을 가져옴
 			MemberVO login = memberService.login(membervo);
 
-			if ((login)!=null) {
+			if ((login) != null) {
 				// 파라미터 비밀번호 값과 db에 암호화 되어있는 비밀번호를 비교
 				boolean pwMatch = pwEncoder.matches(membervo.getPw(), login.getPw());
 				// 아이디, 비밀번호 일치
@@ -66,9 +65,9 @@ public class MemberControllerImpl implements MemberController {
 					String loginID = login.getMember_id();
 					session.setAttribute("member", loginID);
 					mav.setViewName("redirect:/");
-				
-				// 아이디만 맞았을 경우 
-				} else if(!pwMatch && membervo.getMember_id().equals(login.getMember_id())) {
+
+					// 아이디만 맞았을 경우
+				} else if (!pwMatch && membervo.getMember_id().equals(login.getMember_id())) {
 					// 세션에 null을 붙여준다
 					session.setAttribute("member", null);
 					out.println("<script>");
@@ -78,50 +77,66 @@ public class MemberControllerImpl implements MemberController {
 					out.close();
 					mav.setViewName("redirect:/member/loginForm.do");
 					mav.addObject("message", "비밀번호가 다릅니다");
-					
-				// 수정해야 함
+
+					// 수정해야 함
 				}
-			} else{
-					// 세션에 null을 붙여준다
-					//session.setAttribute("member", null);
+			} else {
+				// 세션에 null을 붙여준다
+				// session.setAttribute("member", null);
+				out.println("<script>");
+				out.println("alert('아이디를 확인해주세요');");
+				out.println("history.back()");
+				out.println("</script>");
+				out.close();
+				mav.setViewName("redirect:/member/loginForm.do");
+				mav.addObject("message", "일치하는 아이디가 없습니다.");
+			}
+			// 관리자 로그인
+			login = memberService.adminLogin(membervo);
+			if (login == null) {
+				mav.setViewName("redirect:/");
+			} else {
+				// 관리자를 나타내는 1이 있을 경우
+				if (login.getAuthority().equals("1") && login.getAuthority() != null) {
+					session.setAttribute("admin", login);
+					mav.setViewName("redirect:/admin/main/main.do");
+
+					// 비밀번호가 다를 경우
+				} else if (login.getAuthority().equals("1") && login.getMember_id() != membervo.getMember_id()) {
+					session.setAttribute("admin", null);
 					out.println("<script>");
-					out.println("alert('아이디를 확인해주세요');");
+					out.println("alert('비밀번호를 확인해주세요');");
 					out.println("history.back()");
 					out.println("</script>");
 					out.close();
-					mav.setViewName("redirect:/member/loginForm.do");
-					mav.addObject("message", "일치하는 아이디가 없습니다.");
+				} else {
+					out.println("<script>");
+					out.println("alert('아이디 또는 비밀번호를 확인해주세요');");
+					out.println("history.back()");
+					out.println("</script>");
+					out.close();
+				}
 			}
-			
-				// 관리자 로그인 - 오류로 닫아놨어요
-//			login = memberService.adminLogin(membervo);
-//			if(login.getAuthority().equals("1")) {
-//				session.setAttribute("admin", login);
-//				mav.setViewName("redirect:/admin/admin");
-//			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return mav;
 	}
 
-	
-	
 	// 아이디 찾기 - 수정필요
-	@RequestMapping(value = "/findId" , method = RequestMethod.POST)
-	public ModelAndView findId(@ModelAttribute MemberVO membervo, HttpSession session,
-		HttpServletResponse response) throws Exception{ 
-		ModelAndView mav = new ModelAndView(); 
-		List<MemberVO> userList = memberService.findId(membervo); 
+	@RequestMapping(value = "/findId", method = RequestMethod.POST)
+	public ModelAndView findId(@ModelAttribute MemberVO membervo, HttpSession session, HttpServletResponse response)
+			throws Exception {
+		ModelAndView mav = new ModelAndView();
+		List<MemberVO> userList = memberService.findId(membervo);
 		System.out.println(userList);
-		String findId= membervo.getMember_id();
+		String findId = membervo.getMember_id();
 		System.out.println(findId);
-		mav.setViewName("findIdForm"); 
-		mav.addObject("findId", userList); 
+		mav.setViewName("findIdForm");
+		mav.addObject("findId", userList);
 		return mav;
 	}
 
-		
 	// 로그아웃 처리
 	@RequestMapping(value = "/logout.do")
 	public ModelAndView logout(HttpSession session) {
@@ -166,14 +181,16 @@ public class MemberControllerImpl implements MemberController {
 	// 아이디 중복확인
 	@ResponseBody
 	@RequestMapping(value = "/idCheck.do", method = RequestMethod.POST)
-	public String idCheck(@RequestParam("member_id") String member_id, HttpServletRequest request, HttpServletResponse response) throws Exception{
+	public String idCheck(@RequestParam("member_id") String member_id, HttpServletRequest request,
+			HttpServletResponse response) throws Exception {
 		int result = memberService.idCheck(member_id);
 		return String.valueOf(result);
 	}
 
 	// 회원 정보 수정에 정보 보이게 하기
 	@RequestMapping(value = "/updateMyInfoForm.do", method = RequestMethod.GET)
-	public ModelAndView showInfo(@RequestParam("member_id") String member_id, HttpServletRequest request, HttpServletResponse response) throws Exception{
+	public ModelAndView showInfo(@RequestParam("member_id") String member_id, HttpServletRequest request,
+			HttpServletResponse response) throws Exception {
 		ModelAndView mav = new ModelAndView("/member/updateMyInfoForm");
 		MemberVO membervo = memberService.showInfo(member_id);
 		mav.addObject("membervo", membervo);
@@ -183,10 +200,11 @@ public class MemberControllerImpl implements MemberController {
 	// 회원 정보 수정에서 현재 비밀번호 비교
 	@ResponseBody
 	@RequestMapping(value = "/pwCheck.do", method = RequestMethod.POST)
-	public String pwCheck(@ModelAttribute("membervo") MemberVO membervo, HttpServletRequest request, HttpServletResponse response) throws Exception{
-		
+	public String pwCheck(@ModelAttribute("membervo") MemberVO membervo, HttpServletRequest request,
+			HttpServletResponse response) throws Exception {
+
 		int result = 0;
-		
+
 		// db에 저장되어있는 회원 정보와 파라미터 id 값을 비교 후 값을 가져옴
 		MemberVO loginPw = memberService.pwCheck(membervo);
 
@@ -201,8 +219,9 @@ public class MemberControllerImpl implements MemberController {
 	}
 
 	// 회원 정보 수정
-	@RequestMapping(value="/updateMyInfo.do", method=RequestMethod.POST)
-	public ModelAndView updateMyInfo(@RequestParam Map<String, String> info, HttpServletRequest request, HttpServletResponse response) throws Exception{
+	@RequestMapping(value = "/updateMyInfo.do", method = RequestMethod.POST)
+	public ModelAndView updateMyInfo(@RequestParam Map<String, String> info, HttpServletRequest request,
+			HttpServletResponse response) throws Exception {
 		ModelAndView mav = null;
 		String member_id = info.get("member_id");
 		String b_pw = info.get("b_pw");
@@ -211,30 +230,30 @@ public class MemberControllerImpl implements MemberController {
 		String phone = info.get("phone");
 		// 뽑은 비밀번호를 암호화
 		String encodePW = pwEncoder.encode(newPw);
-		System.out.println(member_id+"/원래비번:"+b_pw+"/새비번:"+newPw+"/"+email+"/"+phone);
+		System.out.println(member_id + "/원래비번:" + b_pw + "/새비번:" + newPw + "/" + email + "/" + phone);
 		MemberVO membervo = new MemberVO(member_id, encodePW, email, phone);
 		// 비밀번호를 변경안 할 경우
-		if(newPw == null || newPw == "") {
+		if (newPw == null || newPw == "") {
 			membervo.setPw(b_pw);
 		}
-		System.out.println("membervo:"+membervo);
+		System.out.println("membervo:" + membervo);
 		int result = memberService.updateMyInfo(membervo);
-		if(result > 0) {
+		if (result > 0) {
 			mav = new ModelAndView("/member/myPageForm");
-		}else {
+		} else {
 			mav = new ModelAndView("redirect:/member/updateMyInfoForm.do");
 		}
 		return mav;
 	}
-	
+
 	// 회원 탈퇴
-	@RequestMapping(value="/signOut.do")
-	public String signOut(HttpSession session, HttpServletResponse response)throws Exception{
+	@RequestMapping(value = "/signOut.do")
+	public String signOut(HttpSession session, HttpServletResponse response) throws Exception {
 		// 세션에 붙은 아이디
 		String member_id = (String) session.getAttribute("member");
 		// true = 탈퇴성공
-		if(memberService.signOut(member_id, response)) {
-			//세션 삭제
+		if (memberService.signOut(member_id, response)) {
+			// 세션 삭제
 			session.invalidate();
 		}
 		// 메인으로 돌아감

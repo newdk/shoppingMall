@@ -10,17 +10,6 @@
 <title>main</title>
 </head>
 <body>
-	<%-- <c:if test="${empty sessionScope.member && sessionScope.member == null }">
-		<h1>main 입니다~!!!!</h1>
-		<a href="${path }/member/loginForm.do">로그인</a>
-		<a href="${path }/member/signUpForm.do">회원가입</a>
-	</c:if>
-	<c:if test="${not empty sessionScope.member && sessionScope.member != null }">
-		<h1>${sessionScope.member }님 환영합니다</h1>
-		<a href="${path }/member/logout.do">로그아웃</a>
-		<a href="${path }/member/myPageForm.do">내 정보</a>
-	</c:if> --%>
-	
 <br><br>
 <div id="contentWrapper">
 <div id="contentWrap">
