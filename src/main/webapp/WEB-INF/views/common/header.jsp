@@ -25,10 +25,10 @@
                 <li><a href="">PHOTO REVIEW</a></li>
                 <li><a href="">Q&amp;A</a></li>
             </ul>
-            <c:if test="${empty sessionScope.member && sessionScope.member == null }">
+            <c:if test="${empty sessionScope.member && sessionScope.member == null && empty sessionScope.admin && sessionScope.admin == null }">
 	            <ul class="topgnb__right">
 	                <li><a href="${path }/member/loginForm.do">LOGIN</a></li>
-	                <li><a href="">JOIN</a></li>
+	                <li><a href="${path }/member/signUpForm.do">JOIN</a></li>
 	                <li><a href="">CART</a></li>
 	                <li><a href="${path }/member/myPageForm.do">MY PAGE</a></li>
 	                <li><a href="">ORDER</a></li>
