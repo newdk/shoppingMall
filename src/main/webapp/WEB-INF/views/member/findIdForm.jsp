@@ -23,6 +23,10 @@ function check(){
         return;
     }
 	
+<<<<<<< HEAD
+=======
+    /* 수정필요 */
+>>>>>>> main
 	$.ajax({
         url:"${contextPath}/findId",
         type:"POST",
