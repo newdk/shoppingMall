@@ -9,7 +9,8 @@ import com.shoppingMall.cart.vo.CartVO;
 import com.shoppingMall.product.vo.ProductVO;
 
 public interface CartService {
-	public Map<String ,List> myCartList(CartVO cartVO) throws Exception;
+	@SuppressWarnings("rawtypes")
+	public Map<String, List> myCartList(CartVO cartVO) throws Exception;
 	public boolean findCartProduct(CartVO cartVO) throws Exception;
 	public void addProductInCart(CartVO cartVO) throws Exception;
 	public boolean modifyCartQty(CartVO cartVO) throws Exception;

@@ -34,20 +34,28 @@ public class CartControllerImpl extends BaseController implements CartController
 	@Autowired
 	private MemberVO memberVO;
 	
+	//myCartMain
 	@RequestMapping(value="/myCartList.do" , method = RequestMethod.GET)
 	public ModelAndView myCartMain(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		String viewName=(String)request.getAttribute("viewName");
 		ModelAndView mav = new ModelAndView(viewName);
 		HttpSession session=request.getSession();
 		MemberVO memberVO=(MemberVO)session.getAttribute("memberInfo");
-		String member_id=memberVO.getMember_id();
-		cartVO.setMember_id(member_id);
-		Map<String ,List> cartMap=cartService.myCartList(cartVO);
-		session.setAttribute("cartMap", cartMap); //¿ÂπŸ±∏¥œ ∏Ò∑œ »≠∏Èø°º≠ ªÛ«∞ ¡÷πÆ Ω√ ªÁøÎ«œ±‚ ¿ß«ÿº≠ ¿ÂπŸ±∏¥œ ∏Ò∑œ¿ª ººº«ø° ¿˙¿Â«—¥Ÿ.
+		
+		// ÏóêÎü¨..//
+//		String member_id=memberVO.getMember_id();
+//		cartVO.setMember_id(member_id);
+//		cartVO.setMember_id(memberVO.getMember_id());
+		
+		
+		
+		Map<String, List> cartMap = cartService.myCartList(cartVO);
+		session.setAttribute("cartMap", cartMap);
 		//mav.addObject("cartMap", cartMap);
 		return mav;
 	}
 	
+	//addProductInCart
 	@RequestMapping(value="/addProductInCart.do" ,method = RequestMethod.POST,produces = "application/text; charset=utf8")
 	public @ResponseBody String addProductInCart(@RequestParam("product_no") int product_no, HttpServletRequest request, HttpServletResponse response)  throws Exception{
 		HttpSession session=request.getSession();

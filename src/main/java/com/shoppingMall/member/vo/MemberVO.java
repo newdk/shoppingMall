@@ -2,6 +2,9 @@ package com.shoppingMall.member.vo;
 
 import java.sql.Date;
 
+import org.springframework.stereotype.Component;
+
+@Component("memberVO")
 public class MemberVO {
 	private String member_id;		// 아이디
 	private String member_name;		// 이름

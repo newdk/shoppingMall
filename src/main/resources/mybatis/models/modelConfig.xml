@@ -4,9 +4,9 @@
 
 <configuration>
   <typeAliases>
-      <typeAlias type="com.shoppingMall.member.vo.MemberVO"  alias="memberVO" />
-      <typeAlias type="com.shoppingMall.cart.vo.CartVO"  alias="CartVO" />
-      <typeAlias type="com.shoppingMall.product.vo.ProductVO"  alias="ProductVO" />
+	<typeAlias type="com.shoppingMall.member.vo.MemberVO"  alias="memberVO" />
+    <typeAlias type="com.shoppingMall.cart.vo.CartVO" alias="CartVO" />
+    <typeAlias type="com.shoppingMall.product.vo.ProductVO" alias="ProductVO" />
   </typeAliases>
 </configuration>
 

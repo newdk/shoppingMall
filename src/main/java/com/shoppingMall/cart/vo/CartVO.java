@@ -7,14 +7,13 @@ import org.springframework.stereotype.Component;
 @Component("cartVO")
 public class CartVO {
 	
-	private String member_id;	// È¸¿ø¾ÆÀÌµğ
-	private int product_no;		// »óÇ°¹øÈ£
-	private int count;			// ¼ö·®
-	private Date cart_date;		// Àå¹Ù±¸´Ï³¯Â¥
-	private int origin_price;	// ¿ø°¡
-	private int sale_price;		// ÇÒÀÎ°¡
-	private int cart_no;		// Àå¹Ù±¸´Ï¹øÈ£
-	
+	private String member_id;	// íšŒì›ì•„ì´ë””
+	private int product_no;		// ìƒí’ˆë²ˆí˜¸
+	private int count;			// ìˆ˜ëŸ‰
+	private Date cart_date;		// ì¥ë°”êµ¬ë‹ˆë‚ ì§œ
+	private int origin_price;	// ì›ê°€
+	private int sale_price;		// í• ì¸ê°€
+	private int cart_no;		// ì¥ë°”êµ¬ë‹ˆë²ˆí˜¸
 	
 	public CartVO() {}
 

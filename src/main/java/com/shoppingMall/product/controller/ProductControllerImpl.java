@@ -28,16 +28,18 @@ public class ProductControllerImpl extends BaseController implements ProductCont
 	@Autowired
 	private ProductService productService;
 	
+	//상품번호조회 productDetail
 	@RequestMapping(value="/productDetail.do" ,method = RequestMethod.GET)
 	public ModelAndView productDetail(@RequestParam("product_no") String product_no,
 			                       HttpServletRequest request, HttpServletResponse response) throws Exception {
 		String viewName=(String)request.getAttribute("viewName");
 		HttpSession session=request.getSession();
+		//상품번호 Map으로 반환
 		Map productMap=productService.productDetail(product_no);
 		ModelAndView mav = new ModelAndView(viewName);
 		mav.addObject("productMap", productMap);
-		ProductVO productVO=(ProductVO)productMap.get("productVO");
-		addproductInQuick(product_no,productVO,session);
+//		ProductVO productVO=(ProductVO)productMap.get("productVO");
+//		addproductInQuick(product_no,productVO,session);
 		return mav;
 	}
 	

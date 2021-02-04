@@ -25,7 +25,7 @@ import org.springframework.web.servlet.mvc.multiaction.MultiActionController;
 //import com.shoppingMall.product.vo.ImageFileVO;
 
 public abstract class BaseController  {
-	private static final String CURR_IMAGE_REPO_PATH = "C:\\shoppingMall\\file_repo";
+//	private static final String CURR_IMAGE_REPO_PATH = "C:\\shoppingMall\\file_repo";
 	/*
 	protected List<ImageFileVO> upload(MultipartHttpServletRequest multipartRequest) throws Exception{
 		List<ImageFileVO> fileList= new ArrayList<ImageFileVO>();
@@ -64,9 +64,11 @@ public abstract class BaseController  {
 	
 	@RequestMapping(value="/*.do" ,method={RequestMethod.POST,RequestMethod.GET})
 	protected  ModelAndView viewForm(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		
 		String viewName = (String)request.getAttribute("viewName");
 		ModelAndView mav = new ModelAndView(viewName);
 		return mav;
+		
 	}
 	
 	/*

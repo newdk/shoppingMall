@@ -19,8 +19,9 @@ public class ProductDAOImpl implements ProductDAO{
 
 	@Override
 	public List<ProductVO> selectProductList(String productStatus ) throws DataAccessException {
+		//상품정보조회
 		List<ProductVO> productList=(ArrayList)sqlSession.selectList("mapper.product.selectProductList",productStatus);
-	   return productList;	
+	    return productList;	
      
 	}
 	
