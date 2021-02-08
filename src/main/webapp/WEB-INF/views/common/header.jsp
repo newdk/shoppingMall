@@ -29,7 +29,7 @@
 	            <ul class="topgnb__right">
 	                <li><a href="${path }/member/loginForm.do">LOGIN</a></li>
 	                <li><a href="${path }/member/signUpForm.do">JOIN</a></li>
-	                <li><a href="">CART</a></li>
+	                <li><a href="${path }/cart/myCartList.do">CART</a></li>
 	                <li><a href="${path }/member/myPageForm.do">MY PAGE</a></li>
 	                <li><a href="">ORDER</a></li>
 	            </ul>
@@ -38,7 +38,7 @@
 				<ul class="topgnb__right">
 	                <li><a href="${path }/member/logout.do">LOGOUT</a></li>
 	                <li><a href="${path }/member/updateMyInfoForm.do?member_id=${member_id}">MODIFY</a></li>
-	                <li><a href="">CART</a></li>
+	                <li><a href="${path }/cart/myCartList.do">CART</a></li>
 	                <li><a href="${path }/member/myPageForm.do">MY PAGE</a></li>
 	                <li><a href="">ORDER</a></li>
 	            </ul>>
@@ -50,7 +50,7 @@
                 <h1 class="top__logo"><a href="${path }/">WHOSBAG</a></h1>
             </header>
             <div class="top__form">
-                <form action="" method="post" name="search">
+                <form action="" method="post" name="search"  action="${contextPath}/product/searchProduct.do">
                     <input name="search" class="input" value="" onkeydown="" onclick=""/>
                     <a href="">
                         <svg width="20" height="20">
